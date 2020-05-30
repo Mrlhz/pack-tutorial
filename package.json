@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "study",
   "main": "index.js",
+  "bin": {
+    "ntree": "bin/index"
+  },
   "scripts": {
     "lint": "eslint ."
   },
@@ -19,7 +22,8 @@
   "homepage": "https://github.com/Mrlhz/manage-cli#readme",
   "dependencies": {
     "chalk": "^3.0.0",
-    "koa": "^2.11.0"
+    "koa": "^2.11.0",
+    "lin-mizar": "^0.2.3"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
