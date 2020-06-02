@@ -34,3 +34,7 @@ tree [dir] /f menu.txt
 
 
 忍一时越想越气，退一步越想越亏
+
+
+https://segmentfault.com/a/1190000009803941
+https://segmentfault.com/a/1190000012581869?utm_source=tag-newest

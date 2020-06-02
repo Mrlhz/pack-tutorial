@@ -1,0 +1,42 @@
+{
+  "name": "MyToolBox",
+  "version": "1.0.0",
+  "browser_action": {
+    "default_icon": "image/dentifying code48.png",
+    "default_title": "my toolbox",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "css": [
+        "css/ad.css"
+      ],
+      "js": [
+        "js/background.js"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "https://www.bilibili.com/"
+      ],
+      "all_frames": true
+    }
+  ],
+  "description": "个人小工具",
+  "icons": {
+    "128": "image/dentifying code128.png",
+    "48": "image/dentifying code48.png",
+    "16": "image/dentifying code16.png"
+  },
+  "manifest_version": 2,
+  "permissions": [
+    "bookmarks"
+  ],
+  "web_accessible_resources": [
+    "image/*"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "homepage_url": "https://github.com/Mrlhz/Plugin/tree/master/chrome-extension/mytoolbox"
+}
