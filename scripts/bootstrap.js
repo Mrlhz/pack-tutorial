@@ -31,11 +31,13 @@ function copyFiles(from, to) {
 
 }
 
-
-function replaceMatch(path, matchList = []) {
-	matchList.forEach(match => {
-
+function replaceMatch(path, matchList = {}) {
+	const jsonContent = require(path)
+	Object.keys(matchList).forEach(key => {
+		jsonContent[key] = matchList[key]
 	})
+
+	return jsonContent
 }
 
 function writeJsonFile(path, jsonList = []) {
@@ -46,8 +48,17 @@ function writeJsonFile(path, jsonList = []) {
 function init() {
 	copyFiles(templateDir, distDir)
 
+	// update json file
+	const jsonPath = path.join(distDir, 'tub.config.json')
+	const content = replaceMatch(jsonPath, {
+		name: 'manage-cl'
+	})
+
+	fs.writeFileSync(jsonPath, JSON.stringify(content, null, 2))
 
 }
 
 
-init()
+// init()
+
+console.log(path.delimiter)
