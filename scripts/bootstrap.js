@@ -36,7 +36,8 @@ function replaceMatch(path, matchList = {}) {
 	const jsonContent = require(path)
 	console.log(path, jsonContent)
 	Object.keys(matchList).forEach(key => {
-		jsonContent[key] = matchList[key]
+		// jsonContent[key] = matchList[key]
+		setValue(jsonContent, key, matchList[key])
 	})
 
 	return jsonContent
@@ -49,19 +50,21 @@ function writeJsonFile(oldPath, content, newPath) {
 	})
 }
 
-function t(object, key) {
-	if (!key.includes('.')) {
-		return object[key]
-	} else {
-		return key.split('.').reduce((acc, cur) => {
-			if (typeof acc[cur] === 'object') {
-				acc = acc[cur]
-				return acc
-			} else {
-				return acc[cur]
-			}
-		}, object)
-	}
+function setValue(object, key, newValue) {
+	if (!object || !key) return
+	const keysList = key.split('.')
+	const keysLength = keysList.length
+	keysList.reduce((acc, cur, index) => {
+		if (typeof acc[cur] === 'object' && index !== keysLength -1) {
+			acc = acc[cur]
+			console.log(acc, 1, cur)
+			return acc
+		} else {
+			console.log(acc, 2, cur, acc[cur], newValue)
+
+			acc[cur] = newValue
+		}
+	}, object)
 }
 
 
@@ -73,7 +76,7 @@ function init() {
 	const jsonPath2 = path.join(distDir, 'tub.config2.json')
 	const content = replaceMatch(jsonPath, {
 		name: 'manage-cl',
-		'devDependencies.chalk': '^4.0.5'
+		'devDependencies.chalk': '^4.0.7'
 	})
 
 	// fs.writeFileSync(jsonPath, JSON.stringify(content, null, 2))
@@ -82,7 +85,7 @@ function init() {
 }
 
 
-// init()
+init()
 
 // console.log(path.delimiter)
 const target = {
@@ -94,6 +97,6 @@ const target = {
 		}
 	}
 }
-const re = t(target, 'a.b.c.d')
+// const re = setValue(target, 'a.b.c.d', 7777)
 
-console.log(re)
+// console.log(target)
