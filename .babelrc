@@ -1,0 +1,14 @@
+{
+	"plugins": ["@babel/syntax-dynamic-import"],
+	"presets": [
+		[
+			"@babel/preset-env",
+			{
+				// "targets": {}, // 这里是targets的配置，根据实际browserslist设置 e.g. "IE 10"
+				"corejs": 3, // 添加core-js版本
+				"modules": false, // 模块使用 es modules ，不使用 commonJS 规范
+				"useBuiltIns": "usage" // 默认 false, 可选 entry , usage
+			}
+		]
+	]
+}
