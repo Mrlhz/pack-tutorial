@@ -1,3 +1,0 @@
-# {{ selfAppName }}
-
-## {{ description }}
