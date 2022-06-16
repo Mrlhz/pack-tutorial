@@ -28,5 +28,8 @@ yarn add @babel/plugin-transform-runtime -D
 # 将 runtime 作为依赖
 yarn add @babel/runtime -S
 
+#
+yarn add -D mini-css-extract-plugin
+
 yarn add core-js
 ```
