@@ -28,8 +28,11 @@ yarn add @babel/plugin-transform-runtime -D
 # 将 runtime 作为依赖
 yarn add @babel/runtime -S
 
-#
+# 提取CSS
 yarn add -D mini-css-extract-plugin
+
+# 使用typescript
+yarn add -D typescript ts-loader
 
 yarn add core-js
 ```

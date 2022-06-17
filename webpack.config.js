@@ -31,6 +31,11 @@ const config = {
   ],
   module: {
     rules: [
+			{
+        test: /\.(ts|tsx)$/i,
+        loader: "ts-loader",
+        exclude: ["/node_modules/"],
+      },
       {
         test: /\.(js|jsx)$/i,
         loader: "babel-loader",
@@ -51,6 +56,9 @@ const config = {
       // Add your rules for custom modules here
       // Learn more about loaders from https://webpack.js.org/loaders/
     ],
+  },
+	resolve: {
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
   },
 };
 
