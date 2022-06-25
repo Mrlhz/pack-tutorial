@@ -1,56 +1,59 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-const isProduction = process.env.NODE_ENV == "production";
+const isProduction = process.env.NODE_ENV == 'production'
 
 const extractCSS = 'Do you want to extract CSS for every file?'
 const stylesHandler = extractCSS ? MiniCssExtractPlugin.loader : 'style-loader'
 
 const config = {
-  entry: "./src/index.js",
+  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, "dist"),
-		library: "MyLibrary"
+    path: path.resolve(__dirname, 'dist'),
+		library: 'MyLibrary'
   },
   devServer: {
     open: true,
-    host: "localhost",
+    host: 'localhost',
   },
   plugins: [
     new HtmlWebpackPlugin({
       favicon: 'public/favicon.ico',
-      template: "public/index.html",
+      template: 'public/index.html',
     }),
 
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
-		new MiniCssExtractPlugin({})
+		new MiniCssExtractPlugin({
+      // filename: '[name].[hash].css',
+      // chunkFilename: '[id].[hash].css'
+		})
   ],
   module: {
     rules: [
 			{
         test: /\.(ts|tsx)$/i,
-        loader: "ts-loader",
-        exclude: ["/node_modules/"],
+        loader: 'ts-loader',
+        exclude: ['/node_modules/'],
       },
       {
         test: /\.(js|jsx)$/i,
-        loader: "babel-loader",
+        loader: 'babel-loader',
       },
       {
         test: /\.less$/i,
-        use: [stylesHandler, "css-loader", "postcss-loader", "less-loader"],
+        use: [stylesHandler, 'css-loader', 'postcss-loader', 'less-loader'],
       },
       {
         test: /\.css$/i,
-        use: [stylesHandler, "css-loader", "postcss-loader"],
+        use: [stylesHandler, 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-        type: "asset",
+        type: 'asset',
       },
 
       // Add your rules for custom modules here
@@ -60,13 +63,13 @@ const config = {
 	resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
   },
-};
+}
 
 module.exports = () => {
   if (isProduction) {
-    config.mode = "production";
+    config.mode = 'production'
   } else {
-    config.mode = "development";
+    config.mode = 'development'
   }
-  return config;
-};
+  return config
+}

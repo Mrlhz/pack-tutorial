@@ -14,7 +14,7 @@
 
 
 @grid-breakpoints: {
-	xs: 0;
+	// xs: 0;
   sm: 576px;
   md: 768px;
   lg: 992px;
@@ -65,6 +65,8 @@
 
 .make-grid-columns() {
   each(@grid-breakpoints, {
+		// TODO @value == 0 bug
+		// https://less.bootcss.com/functions/#logical-functions-if
 		@media (min-width: @value) {
 			.col-@{key} {
 				flex: 1 0 0%; // Flexbugs #4: https://github.com/philipwalton/flexbugs#flexbug-4
@@ -74,4 +76,10 @@
   });
 }
 
+@media (max-width: (575px)) {
+	.col-xs {
+		flex: 1 0 0%;
+	}
+	.generate-columns(xs)
+}
 .make-grid-columns();
