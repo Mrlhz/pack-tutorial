@@ -18,6 +18,7 @@ const config = {
   devServer: {
     open: true,
     host: 'localhost',
+		port: 7777
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -46,6 +47,10 @@ const config = {
       {
         test: /\.less$/i,
         use: [stylesHandler, 'css-loader', 'postcss-loader', 'less-loader'],
+      },
+      {
+        test: /\.scss$/i,
+        use: [stylesHandler, 'css-loader', 'postcss-loader', 'sass-loader'],
       },
       {
         test: /\.css$/i,

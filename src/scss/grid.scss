@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+$columns: 12 !default;
+$grid-gutter-width: 0px !default;
+
+$grid-breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  // TODO: Revisit calc order after https://github.com/react-bootstrap/react-bootstrap/issues/6039 is fixed
+  margin-top: 0; // stylelint-disable-line function-disallowed-list
+  margin-right: 0; // stylelint-disable-line function-disallowed-list
+  margin-left: 0; // stylelint-disable-line function-disallowed-list
+	& * {
+		box-sizing: border-box;
+		flex-shrink: 0;
+		width: 100%;
+		max-width: 100%;
+		padding-right: 0;
+		padding-left: 0;
+		margin-top: 0;
+	}
+}
+
+@mixin make-grid-columns($columns: $columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+
+	@each $breakpoint, $size in $breakpoints {
+
+		@media (min-width: #{$size}) {
+			.col-#{$breakpoint} {
+				flex: 1 0 0%;
+			}
+			@for $i from 1 through $columns {
+				.col-#{$breakpoint}-#{$i} {
+					$width: calc($i / $columns);
+					flex: 0 0 auto;
+					width: percentage($width);
+				}
+			}
+		}
+
+	}
+
+}
+
+// @include make-grid-columns($columns, $grid-gutter-width, $grid-breakpoints)
+@include make-grid-columns()

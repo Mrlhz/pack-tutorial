@@ -1,0 +1,33 @@
+:root {
+	--bd-violet-rgb: 112.520718,44.062154,249.437846;
+}
+
+$purple:         #d3dce6;
+$purple-light:   #e5e9f2;
+
+$bg-colors: (
+	'purple': $purple,
+	'purple-light': $purple-light
+);
+
+@each $name, $color  in $bg-colors {
+	.bg-#{$name} {
+		background: $color;
+	}
+}
+
+.bd-example-row [class^="col"] {
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+	background-color: rgba(var(--bd-violet-rgb), 0.1);
+	border: 1px solid rgba(var(--bd-violet-rgb), 0.25);
+}
+
+.bd-example-row .row+.row {
+	margin-top: 1rem;
+}
+
+.grid-content {
+	border-radius: 4px;
+  min-height: 36px;
+}
